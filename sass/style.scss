@@ -1,0 +1,219 @@
+@import "bourbon/bourbon";
+
+body {
+	background: #000;
+	height: 100vh;
+	overflow: hidden;
+	@include display(flex);
+	@include justify-content(center);
+	@include align-items(center);
+	@include flex-flow(row);
+
+	.node {
+		height: 100px;
+		width: 100px;
+		position: relative;
+		
+		.ring1,
+		.ring2,
+		.ring3,
+		.ring4 {
+			border: 2px solid #202020;
+			background-color: transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			
+
+			@include animation-timing-function(linear);
+			@include animation-iteration-count(infinite);
+
+			&:hover {
+				@include animation-play-state(paused);
+			}
+		}
+
+		.proton,
+		.bluetron,
+		.pinktron {
+			width: 4px;
+			height: 4px;
+			background: #fff;
+			border-radius: 4px;
+			position: absolute;
+		}
+
+		.bluetron {
+			background-color: darkblue;
+		}
+
+		.pinktron {
+			background-color: salmon;
+		}
+
+
+
+		.ring1 {
+			height: 150px;
+			width: 150px;
+			border-radius: 80px;
+			left: -15px;
+			top: -25px;
+			z-index: 3;
+
+			@include animation-name(counterSpin);
+			@include animation-duration(21s);
+
+			.proton {
+				top: 42px;
+				right: 4px;
+
+				@include animation-iteration-count(infinite);
+				@include animation-duration(3s);
+				@include animation-timing-function(ease);
+				@include animation-name(pulse);
+			}
+		}
+
+		.ring2 {
+			width: 86px;
+			height: 86px;
+			top: 6px;
+			left: 6px;
+			border-radius: 100px;
+			z-index: 4;
+
+			@include animation-name(Spin);
+			@include animation-duration(9s);
+			
+
+			.proton {
+				top: 30px;
+				left: -1px;
+			}
+		}
+
+		.ring3 {
+			width: 72px;
+			height: 72px;
+			top: 13px;
+			left: 13px;
+			border-radius: 50px;
+			z-index: 5;
+
+			@include animation-name(counterSpin);
+			@include animation-duration(14s);
+
+			.proton {
+				top: 0;
+				left: 20px;
+			}
+
+			.bluetron {
+				background-color: lightgreen;
+				top: 5px;
+				right: 11px;
+			}
+
+			.pinktron {
+				background-color: salmon;
+				top: 48px;
+				left: 0px;
+			}
+		}
+
+		.ring4 {			
+			width: 600px;
+			height: 600px;
+			border-radius: 320px;
+			top: -260px;
+			left: -116px;
+			z-index: 1;
+			
+
+			@include animation-name(Spin);
+			@include animation-duration(60s);
+
+			.proton {
+				background-color: darkorange;
+				left: 300px;
+				top: -7px;
+				width: 10px;
+				height: 10px;
+				border-radius: 5px;
+			}
+		}
+
+
+
+		.core {
+			width: 28px;
+			height: 28px;
+			border-radius: 15px;
+			overflow: hidden;
+			position: absolute;
+			top: 37px;
+			left: 37px;
+			border: 1px solid #666;
+			box-sizing: border-box;
+			z-index: 6;
+
+			@include animation-name(Spin);
+			@include animation-duration(18s);
+			@include animation-timing-function(linear);
+			@include animation-iteration-count(infinite);
+
+			&:hover {
+				@include animation-play-state(paused);
+			}
+
+			
+			
+
+			.section2,
+			.section3 {
+				height: 13px;
+				width: 13px;
+				position: relative;
+				border-style: solid;
+				border-color: #666;
+				border-width: 0;
+			}
+
+			.section2 {
+				border-right-width: 13px;
+			}
+
+			.section3 {
+				border-left-width: 13px;
+			}
+		}
+
+		
+
+	}
+}
+
+@include keyframes(Spin) {
+	from {
+		@include transform(rotate(0deg));
+	}
+	to {
+		@include transform(rotate(360deg));
+	}
+}
+
+@include keyframes(counterSpin) {
+	from {
+		@include transform(rotate(0deg));
+	}
+	to {
+		@include transform(rotate(-360deg));
+	}
+}
+
+@include keyframes(pulse) {
+	0% { opacity: 0.2}
+	50% { opacity: 1}
+	100% { opacity: 0.2}
+}
